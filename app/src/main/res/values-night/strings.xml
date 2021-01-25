@@ -13,4 +13,10 @@
     <string name="create_an_account">Create an account</string>
     <string name="create_an_account_and_work_with_us">Create an account and work with us!</string>
     <string name="loading">Loading...</string>
+    <string name="zarejestruj_tankowanie">Zarejestruj tankowanie</string>
+    <string name="rozpocznij_zmian">Rozpocznij zmianę</string>
+    <string name="zglos_usterke">Zgłoś ustarkę</string>
+    <string name="zakoncz_zmiane">Zakończ zmianę</string>
+    <string name="company_info">Data about company (name, etc)</string>
+    <string name="todo">TODO</string>
 </resources>

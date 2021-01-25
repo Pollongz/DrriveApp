@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText emailNew, passwordNew, passwordNew2, nameNew, surnameNew;
     private Button addUser;
     private FirebaseAuth mAuth;
+    private static final String instance = "https://loginjava-23ea0-default-rtdb.firebaseio.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +107,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     if (task.isSuccessful()) {
                         User user = new User(email, name, surname);
 
-                        FirebaseDatabase.getInstance("https://loginjava-23ea0-default-rtdb.firebaseio.com/").getReference("users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        FirebaseDatabase.getInstance(instance).getReference("users")
+                                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                                 .setValue(user).addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
