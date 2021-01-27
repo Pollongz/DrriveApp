@@ -3,10 +3,13 @@ package com.example.loginjava;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,19 +26,8 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView nameOfUserView,todayDateView;
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://loginjava-23ea0-default-rtdb.firebaseio.com/");
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    DatabaseReference reference = firebaseDatabase.getReference();
-    FirebaseUser currentUser = mAuth.getCurrentUser();
-    String userid;
-    Date date=java.util.Calendar.getInstance().getTime();
-
-    {
-        assert currentUser != null;
-        userid = currentUser.getUid();
-    }
-
+    private TextView nameOfUserView,todayDateView;
+    private Date date=java.util.Calendar.getInstance().getTime();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
         String todaysDate = date.toString();
 
         todayDateView.setText(todaysDate);
-
-        reference.child("users").child(userid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String userName = snapshot.child("name").getValue(String.class);
-                nameOfUserView.setText(userName);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
     }
 }

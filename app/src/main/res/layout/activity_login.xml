@@ -34,14 +34,14 @@
         app:layout_constraintTop_toBottomOf="@+id/appName" />
 
     <EditText
-        android:id="@+id/emailLog"
+        android:id="@+id/usernameLog"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="30dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="30dp"
-        android:hint="@string/email"
+        android:hint="@string/username"
         android:inputType="textEmailAddress"
         android:drawableEnd="@drawable/ic_email"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
         android:drawableEnd="@drawable/ic_lock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLog"
+        app:layout_constraintTop_toBottomOf="@+id/usernameLog"
         android:importantForAutofill="no" />
 
     <Button

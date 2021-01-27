@@ -19,4 +19,6 @@
     <string name="zakoncz_zmiane">Zakończ zmianę</string>
     <string name="company_info">Data about company (name, etc)</string>
     <string name="todo">TODO</string>
+    <string name="username">Username</string>
+    <string name="fullname">Fullname</string>
 </resources>

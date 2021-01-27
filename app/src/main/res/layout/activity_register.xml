@@ -80,20 +80,20 @@
         android:drawableEnd="@drawable/ic_lock"
         android:importantForAutofill="no"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/nameNew"
+        app:layout_constraintBottom_toTopOf="@+id/usernameNew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordNew" />
 
     <EditText
-        android:id="@+id/nameNew"
+        android:id="@+id/usernameNew"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="30dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="30dp"
-        android:hint="@string/name"
+        android:hint="@string/username"
         android:drawableEnd="@drawable/ic_name"
         android:importantForAutofill="no"
         android:inputType="text"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordNew2" />
 
     <EditText
-        android:id="@+id/surnameNew"
+        android:id="@+id/fullnameNew"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -110,14 +110,14 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="40dp"
-        android:hint="@string/surname"
+        android:hint="@string/fullname"
         android:drawableEnd="@drawable/ic_name"
         android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/addUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameNew" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameNew" />
 
     <Button
         android:id="@+id/addUser"
