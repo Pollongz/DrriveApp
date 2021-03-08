@@ -20,4 +20,9 @@
     <string name="todo">TODO</string>
     <string name="username">Username</string>
     <string name="fullname">Fullname</string>
+    <string-array name="privelages">
+        <item>administrator</item>
+        <item>manager</item>
+        <item>employee</item>
+    </string-array>
 </resources>

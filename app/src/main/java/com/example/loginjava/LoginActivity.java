@@ -15,10 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.vishnusivadas.advanced_httpurlconnection.FetchData;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
@@ -62,7 +58,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (username.equals("") && password.equals("")) {
             Toast.makeText(getApplicationContext(), "All fields are required!", Toast.LENGTH_SHORT).show();
-            //TODO Zmienic walidację przy zakladaniu konta na regex
         } else {
             Handler handler = new Handler(Looper.getMainLooper());
             handler.post(() -> {
@@ -74,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String[] data = new String[2];
                 data[0] = username;
                 data[1] = password;
-                PutData putData = new PutData("http://192.168.1.60/Drrive/login.php", "POST", field, data);
+                PutData putData = new PutData("http://192.168.1.60/drrive/login.php", "POST", field, data);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
                         String result = putData.getResult();
@@ -86,7 +81,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 }
-                //End Write and Read data with URL
             });
         }
     }

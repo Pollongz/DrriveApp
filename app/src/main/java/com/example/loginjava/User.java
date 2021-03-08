@@ -2,15 +2,14 @@ package com.example.loginjava;
 
 public class User {
 
-    public String email, name, surname;
+    public String email, surname;
 
     public User() {
 
     }
 
-    public User(String email, String name, String surname) {
+    public User(String email, String surname) {
         this.email = email;
-        this.name = name;
         this.surname = surname;
     }
 }
