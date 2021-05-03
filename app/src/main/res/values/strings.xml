@@ -1,16 +1,9 @@
 <resources>
-    <string name="app_name">LoginJava</string>
+    <string name="app_name">Drrive</string>
     <string name="login">Login</string>
     <string name="appname">Drrive</string>
-    <string name="register">Register</string>
     <string name="log_in_to_start_your_shift">Log in to start your shift!</string>
     <string name="password">Password</string>
-    <string name="email">Email address</string>
-    <string name="name">Name</string>
-    <string name="surname">Surname</string>
-    <string name="confirm_password">Confirm password</string>
-    <string name="create_an_account">Create an account</string>
-    <string name="create_an_account_and_work_with_us">Create an account and work with us!</string>
     <string name="loading">Loading...</string>
     <string name="zarejestruj_tankowanie">Zarejestruj tankowanie</string>
     <string name="rozpocznij_zmian">Rozpocznij zmianę</string>
@@ -19,10 +12,7 @@
     <string name="company_info">Data about company (name, etc)</string>
     <string name="todo">TODO</string>
     <string name="username">Username</string>
-    <string name="fullname">Fullname</string>
-    <string-array name="privelages">
-        <item>administrator</item>
-        <item>manager</item>
-        <item>employee</item>
-    </string-array>
+    <string name="remember_me">Remember me</string>
+    <string name="created_by_dariusz_bo_ejewicz">© 2021 - created by Dariusz Bożejewicz</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>

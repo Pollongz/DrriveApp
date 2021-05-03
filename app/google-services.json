@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "188574884681",
-    "project_id": "loginjava-23ea0",
-    "storage_bucket": "loginjava-23ea0.appspot.com"
+    "project_id": "drrive-23ea0",
+    "storage_bucket": "drrive-23ea0.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:188574884681:android:750a1e27edb5d9567e7098",
         "android_client_info": {
-          "package_name": "com.example.loginjava"
+          "package_name": "com.example.drrive"
         }
       },
       "oauth_client": [
