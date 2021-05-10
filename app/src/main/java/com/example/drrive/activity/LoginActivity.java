@@ -64,8 +64,9 @@ import retrofit2.Response;
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(usernameLog.getText().toString().trim());
         loginRequest.setPassword(passwordLog.getText().toString().trim());
+        Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
 
-        Call<Void> loginResponseCall = ApiClient.getUserService().login(loginRequest);
+        Call<Void> loginResponseCall = ApiClient.getUserService(getApplicationContext()).login(loginRequest);
         loginResponseCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
