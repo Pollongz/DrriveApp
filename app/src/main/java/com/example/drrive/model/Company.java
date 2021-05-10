@@ -11,15 +11,23 @@ public class Company {
     @SerializedName("nip")
     private String nip;
     private Integer AddressId;
+    private Address address;
 
     public Company() {
     }
 
-    public Company(Integer idCompany, String name, String nip, Integer addressId) {
+    public Company(
+            Integer idCompany,
+            String name,
+            String nip,
+            Integer addressId,
+            Address address
+    ) {
         this.idCompany = idCompany;
         this.name = name;
         this.nip = nip;
-        AddressId = addressId;
+        this.AddressId = addressId;
+        this.address = address;
     }
 
     public Integer getIdCompany() {
@@ -52,5 +60,13 @@ public class Company {
 
     public void setAddressId(Integer addressId) {
         AddressId = addressId;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

@@ -27,54 +27,47 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView nameOfUserView;
+    private TextView myFullNameTv;
     private TextView todayDateView;
-    private TextView getIt;
+    private TextView myCompanyTv;
     private Button logoutBtn;
+    private Button checkCarHistoryBtn;
+    private Button fillCarReportBtn;
+    private Button addRefuelBtn;
+    private Button addDamageBtn;
+    private Button checkServicesBtn;
     private String todaysDate;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameOfUserView = findViewById(R.id.myFullNameTv);
+        myFullNameTv = findViewById(R.id.myFullNameTv);
         todayDateView = findViewById(R.id.todaysDateTv);
-        getIt = findViewById(R.id.getIt);
+        myCompanyTv = findViewById(R.id.myCompanyTv);
         logoutBtn = findViewById(R.id.logoutBtn);
-
+        checkCarHistoryBtn = findViewById(R.id.checkCarHistoryBtn);
+        fillCarReportBtn = findViewById(R.id.fillCarReportBtn);
+        addRefuelBtn = findViewById(R.id.addRefuelBtn);
+        addDamageBtn = findViewById(R.id.addDamageBtn);
+        checkServicesBtn = findViewById(R.id.checkServicesBtn);
 
         getCurrentUser();
+
         todaysDate = DateFormat.getCurrentDate();
         todayDateView.setText(todaysDate);
         logoutBtn.setOnClickListener(this);
-
-        Call<List<Car>> call = ApiClient.getUserService(getApplicationContext()).getCar();
-        call.enqueue(new Callback<List<Car>>() {
-            @Override
-            public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
-
-                if (response.isSuccessful()) {
-                    List<Car> cars = response.body();
-                    for (Car car : cars) {
-                        getIt.setText(car.getModel_name());
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Car>> call, Throwable t) {
-                getIt.setText(t.getMessage());
-            }
-        });
+        checkCarHistoryBtn.setOnClickListener(this);
+        fillCarReportBtn.setOnClickListener(this);
+        addRefuelBtn.setOnClickListener(this);
+        addDamageBtn.setOnClickListener(this);
+        checkServicesBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == logoutBtn) {
-
             SharedPreferences preferences = getSharedPreferences("logged", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("isLogged", false);
@@ -83,12 +76,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             Toast.makeText(getApplicationContext(), "User logged out successfully", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        } else if (v == checkCarHistoryBtn) {
+            startActivity(new Intent(MainActivity.this, CarsHistoryActivity.class));
+        } else if (v == fillCarReportBtn) {
+
+        } else if (v == addRefuelBtn) {
+
+        } else if (v == addDamageBtn) {
+
+        } else if (v == checkServicesBtn) {
+
         }
     }
 
     // getting username from currently logged user
     public void getCurrentUser() {
-
         Call<String> call = ApiClient.getUserService(getApplicationContext()).getCurrentUser();
         call.enqueue(new Callback<String>() {
             @Override
@@ -101,33 +103,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                // something went wrong
+                // TODO something went wrong
             }
         });
     }
 
     // getting user object from username returned from currently logged user
     public void getUserByUsername(String user) {
-
         Call<User> callUser = ApiClient.getUserService(getApplicationContext()).getUserByUsername(user);
         callUser.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     User thisUser = response.body();
-                    Integer userId = thisUser.getIdUsers(); // get User object nad then id of this user
+                    Integer userId = thisUser.getIdUsers();// get User object nad then id of this user
                     getUsersDataByUserId(userId); // get UsersData object
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                // something went wrong
+                // TODO something went wrong
             }
         });
     }
 
-    // getting UsersData object from userIdv
+    // getting UsersData object from userId
     public void getUsersDataByUserId(Integer user) {
         Call<UsersData> callUsersData = ApiClient.getUserService(getApplicationContext()).getUserDataByUserId(user);
         callUsersData.enqueue(new Callback<UsersData>() {
@@ -136,13 +137,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (response.isSuccessful()) {
                     UsersData thisUserData = response.body();
                     String userFullName = thisUserData.getFirstName() + " " + thisUserData.getLastName();
-                    nameOfUserView.setText(userFullName);
+                    String companyInfo = thisUserData.getCompany().getName() + ", " + thisUserData.getCompany().getAddress().getCity();
+                    myFullNameTv.setText(userFullName);
+                    myCompanyTv.setText(companyInfo);
+
                 }
             }
 
             @Override
             public void onFailure(Call<UsersData> call, Throwable t) {
-                nameOfUserView.setText(t.getMessage());
+                myFullNameTv.setText(t.getMessage());
+                myCompanyTv.setText(t.getMessage());
             }
         });
     }

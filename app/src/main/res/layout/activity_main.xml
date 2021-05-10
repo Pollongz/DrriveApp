@@ -10,11 +10,36 @@
         android:layout_height="match_parent"
         tools:context=".activity.MainActivity">
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginBottom="8dp"
+            android:background="#80E3E3E3"
+            app:layout_constraintBottom_toTopOf="@+id/checkCarHistoryBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/inter_regular"
+            android:text="Wyloguj się"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/appName"
             android:layout_width="411dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="64dp"
             android:fontFamily="@font/knewave"
             android:gravity="center_horizontal"
             android:text="@string/appname"
@@ -25,22 +50,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/myFullNameTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:hint="Dariusz Bożejewicz"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/todaysDateTv" />
-
-        <TextView
             android:id="@+id/todaysDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_regular"
             android:gravity="center"
             android:hint="Poniedziałek, 29 Marca 2021"
             android:textSize="24sp"
@@ -49,10 +63,24 @@
             app:layout_constraintTop_toBottomOf="@+id/appName" />
 
         <TextView
+            android:id="@+id/myFullNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:hint="Dariusz Bożejewicz"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/todaysDateTv" />
+
+        <TextView
             android:id="@+id/myCompanyTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_regular"
             android:gravity="center"
             android:hint="KFC Ogrody Elbląg"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,123 +88,108 @@
             app:layout_constraintTop_toBottomOf="@+id/myFullNameTv" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/checkCarHistoryBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="uzupełnij kartotekę pojazdu"
-            android:textColor="@android:color/black"
-            app:backgroundTint="#FFFFFF"
-            app:cornerRadius="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button5"
-            app:strokeColor="@color/border"
-            app:strokeWidth="2dp" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_regular"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="Sprawdź historię pojazdu"
             android:textColor="@android:color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="50dp"
+            app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/myCompanyTv"
             app:strokeColor="@color/border"
             app:strokeWidth="2dp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/fillCarReportBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_regular"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="uzupełnij kartotekę pojazdu"
+            android:textColor="@android:color/black"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkCarHistoryBtn"
+            app:strokeColor="@color/border"
+            app:strokeWidth="2dp" />
+
+        <Button
+            android:id="@+id/addRefuelBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_regular"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="zarejestruj tankowanie"
             android:textColor="@android:color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="50dp"
+            app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/fillCarReportBtn"
             app:strokeColor="@color/border"
             app:strokeWidth="2dp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/addDamageBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_regular"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="Zgłoś szkodę lub Zapotrzebowanie"
             android:textColor="@android:color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="50dp"
+            app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/addRefuelBtn"
             app:strokeColor="@color/border"
             app:strokeWidth="2dp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/checkServicesBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_regular"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="Sprawdz daty umówionych serwisów"
             android:textColor="@android:color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="50dp"
+            app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/addDamageBtn"
             app:strokeColor="@color/border"
             app:strokeWidth="2dp" />
-
-        <Button
-            android:id="@+id/logoutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Logout"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/getIt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
