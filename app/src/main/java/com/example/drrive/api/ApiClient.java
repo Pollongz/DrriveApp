@@ -25,6 +25,7 @@ public class ApiClient {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
+                .setDateFormat("yyyy-MM-dd")
                 .create();
 
         OkHttpClient client =  new OkHttpClient.Builder()

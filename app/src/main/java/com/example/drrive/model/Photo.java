@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Photo {
 
-    @SerializedName("id_photos")
+    @SerializedName("idPhoto")
     private Integer idPhoto;
-    @SerializedName("photo_url")
+    @SerializedName("photoUrl")
     private String photoUrl;
     private Integer damageId;
 

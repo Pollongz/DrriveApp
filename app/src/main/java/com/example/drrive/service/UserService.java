@@ -4,6 +4,7 @@ import com.example.drrive.model.Car;
 import com.example.drrive.model.Company;
 import com.example.drrive.model.Damage;
 import com.example.drrive.model.Photo;
+import com.example.drrive.model.Post;
 import com.example.drrive.model.Refueling;
 import com.example.drrive.model.Services;
 import com.example.drrive.model.User;
@@ -35,6 +36,9 @@ public interface UserService {
 
     @GET("/user/{user}/usersdata")
     Call<UsersData> getUserDataByUserId(@Path("user") Integer user);
+
+    @GET("/company/{company}/posts")
+    Call<List<Post>> getCompanyPosts(@Path("company") Integer company);
 
     @GET("car")
     Call<List<Car>> getCar();
