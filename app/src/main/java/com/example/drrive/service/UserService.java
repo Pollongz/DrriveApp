@@ -40,21 +40,15 @@ public interface UserService {
     @GET("/company/{company}/posts")
     Call<List<Post>> getCompanyPosts(@Path("company") Integer company);
 
-    @GET("car")
-    Call<List<Car>> getCar();
+    @GET("/company/{company}/cars")
+    Call<List<Car>> getCompanyCars(@Path("company") Integer company);
 
-    @GET("company")
-    Call<Company> getCompany();
-
-    @GET("{car}/damages")
-    Call<List<Damage>> getDamage(@Path("car") Integer carId);
+    @GET("car/{car}/damages")
+    Call<List<Damage>> getCarsDamages(@Path("car") Integer carId);
 
     @GET("/{damage}/photos")
     Call<List<Photo>> getPhotos(@Path("damage") Integer damageId);
 
-    @GET("{car}/refuelings")
-    Call<List<Refueling>> getRefuelings(@Path("car") Integer carId);
-
-    @GET("{car}/services")
-    Call<List<Services>> getServices(@Path("car") Integer carId);
+    @GET("car/{car}/services")
+    Call<List<Services>> getCarsServices(@Path("car") Integer carId);
 }

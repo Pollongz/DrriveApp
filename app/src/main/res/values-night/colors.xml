@@ -2,5 +2,6 @@
 <resources>
 
     <color name="border">#A5A5A5</color>
+    <color name="blue">#007EDE</color>
 
 </resources>

@@ -8,14 +8,16 @@ public class Damage {
     private Integer idDamage;
     @SerializedName("description")
     private String description;
+    private String date;
     private Integer carId;
 
     public Damage() {
     }
 
-    public Damage(Integer idDamage, String description, Integer carId) {
+    public Damage(Integer idDamage, String description, String date, Integer carId) {
         this.idDamage = idDamage;
         this.description = description;
+        this.date = date;
         this.carId = carId;
     }
 
@@ -33,6 +35,14 @@ public class Damage {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Integer getCarId() {

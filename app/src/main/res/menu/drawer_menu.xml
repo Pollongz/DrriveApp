@@ -9,10 +9,14 @@
             android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_notification"
             android:title="Powiadomienia" />
-        <item
-            android:id="@+id/nav_car_history"
-            android:icon="@drawable/ic_history"
-            android:title="Historia pojazdu" />
+    </group>
+
+    <item
+        android:id="@+id/nav_car_history"
+        android:icon="@drawable/ic_history"
+        android:title="Historia pojazdu" />
+
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_fill_car_data"
             android:icon="@drawable/ic_car"

@@ -11,4 +11,8 @@
         <item name="android:textViewStyle">@font/inter_regular</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ToolbarColoredBackArrow" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorControlNormal">@color/black</item>
+    </style>
 </resources>

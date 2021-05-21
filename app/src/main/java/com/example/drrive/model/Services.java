@@ -2,28 +2,25 @@ package com.example.drrive.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Services {
 
     @SerializedName("id_services")
     private Integer idServices;
-    @SerializedName("service_type")
-    private String serviceType;
+    @SerializedName("description")
+    private String description;
     @SerializedName("service_cost")
     private Float ServiceCost;
     @SerializedName("mileage")
     private Integer mileage;
-    @SerializedName("service_date")
-    private Date date;
+    private String date;
     private Integer carId;
 
     public Services() {
     }
 
-    public Services(Integer idServices, String serviceType, Float serviceCost, Integer mileage, Date date, Integer carId) {
+    public Services(Integer idServices, String description, Float serviceCost, Integer mileage, String date, Integer carId) {
         this.idServices = idServices;
-        this.serviceType = serviceType;
+        this.description = description;
         ServiceCost = serviceCost;
         this.mileage = mileage;
         this.date = date;
@@ -38,12 +35,12 @@ public class Services {
         this.idServices = idServices;
     }
 
-    public String getServiceType() {
-        return serviceType;
+    public String getDescription() {
+        return description;
     }
 
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Float getServiceCost() {
@@ -62,11 +59,11 @@ public class Services {
         this.mileage = mileage;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

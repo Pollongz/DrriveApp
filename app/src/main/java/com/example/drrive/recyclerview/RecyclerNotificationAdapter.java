@@ -45,7 +45,7 @@ public class RecyclerNotificationAdapter extends RecyclerView.Adapter<RecyclerNo
         Post post = postsList.get(position);
 
         String postTitle = post.getTitle();
-        String postDate = post.getDate().toString();
+        String postDate = post.getDate();
         String postDescription = post.getDescription();
 
         holder.postTitleTv.setText(postTitle);

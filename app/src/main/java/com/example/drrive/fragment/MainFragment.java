@@ -1,6 +1,5 @@
 package com.example.drrive.fragment;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.drrive.DateFormat;
 import com.example.drrive.R;
-import com.example.drrive.activity.MainActivity;
 import com.example.drrive.api.ApiClient;
 import com.example.drrive.model.Post;
 import com.example.drrive.model.User;
@@ -26,7 +24,6 @@ import com.example.drrive.recyclerview.RecyclerNotificationAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -44,12 +41,15 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
     private RecyclerView recyclerView;
     private Integer companyId;
     private RecyclerNotificationAdapter recyclerNotificationAdapter;
-    private RecyclerNotificationAdapter.RecyclerViewClickListener listener;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull @NotNull LayoutInflater inflater,
+            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
+            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
+    ) {
         View view = inflater.inflate(R.layout.fragment_notifications, container, false);
 
         todaysDateTv = view.findViewById(R.id.todaysDateTv);
@@ -63,7 +63,6 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
         recyclerNotificationAdapter = new RecyclerNotificationAdapter(this::onClick);
 
         getCurrentUser();
-        getAllPosts(companyId);
 
         return view;
     }
@@ -115,7 +114,7 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     User thisUser = response.body();
-                    Integer userId = thisUser.getIdUsers();// get User object nad then id of this user
+                    Integer userId = thisUser.getIdUsers(); // get User object nad then id of this user
                     getUsersDataByUserId(userId); // get UsersData object
                 }
             }
@@ -144,8 +143,14 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
                             .getAddress()
                             .getCity();
 
+                    // get company by employee
                     companyId = thisUserData.getCompany().
                             getIdCompany();
+
+                    SharedPreferences preferences = getActivity().getSharedPreferences("logged", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("companyId", companyId);
+                    editor.apply();
 
                     getAllPosts(companyId);
                     myFullNameTv.setText(userFullName);

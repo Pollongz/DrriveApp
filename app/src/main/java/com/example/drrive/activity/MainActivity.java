@@ -6,49 +6,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.drrive.DateFormat;
 import com.example.drrive.R;
-import com.example.drrive.api.ApiClient;
-import com.example.drrive.fragment.CarHistoryFragment;
-import com.example.drrive.fragment.MainFragment;
-import com.example.drrive.model.Car;
-import com.example.drrive.model.Company;
-import com.example.drrive.model.User;
-import com.example.drrive.model.UsersData;
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //get usersdata
-        //getCurrentUser();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,16 +48,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         if (savedInstanceState == null) {
-
-//            Integer companyId = getIntent().getIntExtra("idCompany", 0);
-
-//            Bundle bundle = new Bundle();
-//            bundle.putInt("idCompany", companyId);
-            MainFragment mainFragment = new MainFragment();
-//            mainFragment.setArguments(bundle);
-
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    mainFragment).commit();
+                    new com.example.drrive.fragment.MainFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_notifications);
         }
     }
@@ -92,8 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new com.example.drrive.fragment.MainFragment()).commit();
                 break;
             case R.id.nav_car_history:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new com.example.drrive.fragment.CarHistoryFragment()).commit();
+                startActivity(new Intent(MainActivity.this, CarHistoryActivity.class));
                 break;
             case R.id.nav_logout:
 
@@ -101,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("isLogged", false);
                 editor.putString("token", "");
+                editor.putInt("companyId", 0);
                 editor.apply();
 
                 Toast.makeText(getApplicationContext(), "User logged out successfully", Toast.LENGTH_SHORT).show();
@@ -117,7 +89,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Click back  again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
         }
     }
 }
