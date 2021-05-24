@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.drrive.R;
+import com.example.drrive.fragment.PlannedServicesFragment;
 import com.example.drrive.fragment.RefuelingFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_refueling:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RefuelingFragment()).commit();
+                break;
+            case R.id.nav_services:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new PlannedServicesFragment()).commit();
                 break;
             case R.id.nav_logout:
 

@@ -29,9 +29,6 @@ import retrofit2.Response;
 
 public class DamageFragment extends Fragment {
 
-    private TextView damageDescriptionTv;
-    private TextView damageDateTv;
-    private ImageView damagePhoto;
     private RecyclerView recyclerView;
     private RecyclerDamageAdapter recyclerDamageAdapter;
     private Integer carId;
@@ -51,10 +48,6 @@ public class DamageFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.damageRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        damageDescriptionTv = view.findViewById(R.id.damageDescriptionTv);
-        damageDateTv = view.findViewById(R.id.damageDateTv);
-        damagePhoto = view.findViewById(R.id.damagePhoto);
 
         recyclerDamageAdapter = new RecyclerDamageAdapter();
 

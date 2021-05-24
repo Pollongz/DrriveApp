@@ -6,11 +6,9 @@ public class Services {
 
     @SerializedName("id_services")
     private Integer idServices;
-    @SerializedName("description")
     private String description;
     @SerializedName("service_cost")
     private Float ServiceCost;
-    @SerializedName("mileage")
     private Integer mileage;
     private String date;
     private Integer carId;
