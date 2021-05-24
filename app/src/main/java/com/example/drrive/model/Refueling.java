@@ -1,29 +1,19 @@
 package com.example.drrive.model;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-
 public class Refueling {
 
-    @SerializedName("id_refuelings")
     private Integer idRefueling;
-    @SerializedName("fuel_type")
     private String fuelType;
-    @SerializedName("fuel_quantity")
     private Float fuelQuantity;
-    @SerializedName("fuel_cost")
     private Float fuelCost;
-    @SerializedName("mileage")
     private Integer mileage;
-    @SerializedName("refuel_date")
-    private Date date;
+    private String date;
     private Integer carId;
 
     public Refueling() {
     }
 
-    public Refueling(Integer idRefueling, String fuelType, Float fuelQuantity, Float fuelCost, Integer mileage, Date date, Integer carId) {
+    public Refueling(Integer idRefueling, String fuelType, Float fuelQuantity, Float fuelCost, Integer mileage, String date, Integer carId) {
         this.idRefueling = idRefueling;
         this.fuelType = fuelType;
         this.fuelQuantity = fuelQuantity;
@@ -73,11 +63,11 @@ public class Refueling {
         this.mileage = mileage;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

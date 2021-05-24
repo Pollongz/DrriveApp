@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,6 +29,7 @@ import retrofit2.Response;
     private Button loginBtn;
     private String token;
     private Boolean isLogged;
+    private ProgressBar loginProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ import retrofit2.Response;
         usernameLog = findViewById(R.id.usernameLog);
         passwordLog =  findViewById(R.id.passwordLog);
         loginBtn = findViewById(R.id.loginBtn);
+        loginProgressBar = findViewById(R.id.loginProgressBar);
+        loginProgressBar.setVisibility(View.GONE);
 
         SharedPreferences preferences = getSharedPreferences("logged", MODE_PRIVATE);
         isLogged = preferences.getBoolean("isLogged", false);
@@ -54,17 +59,27 @@ import retrofit2.Response;
     @Override
     public void onClick(View v) {
         if (v == loginBtn) {
-            //TODO check if credentials correctly entered
-            login();
+            if (usernameLog.getText().toString().trim().isEmpty()) {
+                emptyError(usernameLog);
+            } else if (passwordLog.getText().toString().trim().isEmpty()) {
+                emptyError(passwordLog);
+            } else {
+                loginProgressBar.setVisibility(View.VISIBLE);
+                login();
+            }
+
         }
     }
 
-    private void login() {
+    private void emptyError(TextView option) {
+        option.setError("This field is required");
+        option.requestFocus();
+    }
 
+    private void login() {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(usernameLog.getText().toString().trim());
         loginRequest.setPassword(passwordLog.getText().toString().trim());
-        Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
 
         Call<Void> loginResponseCall = ApiClient.getUserService(getApplicationContext()).login(loginRequest);
         loginResponseCall.enqueue(new Callback<Void>() {
@@ -83,12 +98,14 @@ import retrofit2.Response;
 
                     Toast.makeText(getApplicationContext(), "User logged in successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    loginProgressBar.setVisibility(View.GONE);
                     finish();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                loginProgressBar.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), "User failed logging in: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

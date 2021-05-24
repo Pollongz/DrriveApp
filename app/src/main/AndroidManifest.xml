@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Drrive"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activity.CarHistoryActivity"></activity>
+        <activity android:name=".activity.AddCarInfoActivity"></activity>
+        <activity android:name=".activity.CarHistoryActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:noHistory="true">

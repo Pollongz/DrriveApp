@@ -17,4 +17,10 @@
     <string name="remember_me">Remember me</string>
     <string name="created_by_dariusz_bo_ejewicz">© 2021 - created by Dariusz Bożejewicz</string>
     <string name="forgot_password">Forgot Password</string>
+
+    <string-array name="fuel_type">
+        <item>Benzyna</item>
+        <item>Diesel</item>
+        <item>LPG</item>
+    </string-array>
 </resources>

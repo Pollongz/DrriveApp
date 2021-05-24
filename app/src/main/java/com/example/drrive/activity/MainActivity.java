@@ -15,10 +15,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.drrive.R;
+import com.example.drrive.fragment.RefuelingFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.NotNull;
-
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_car_history:
                 startActivity(new Intent(MainActivity.this, CarHistoryActivity.class));
+                break;
+            case R.id.nav_refueling:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new RefuelingFragment()).commit();
                 break;
             case R.id.nav_logout:
 

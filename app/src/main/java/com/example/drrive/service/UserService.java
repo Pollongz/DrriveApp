@@ -27,6 +27,9 @@ public interface UserService {
     @POST("login")
     Call<Void> login(@Body LoginRequest loginRequest);
 
+    @POST("refueling")
+    Call<Void> addNewRefueling(@Body Refueling refueling);
+
     @GET("user")
     @Headers("Content-Type: application/json")
     Call<String> getCurrentUser();
