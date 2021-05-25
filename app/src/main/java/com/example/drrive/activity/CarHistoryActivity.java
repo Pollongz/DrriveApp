@@ -44,7 +44,6 @@ public class CarHistoryActivity extends AppCompatActivity {
     private RadioButton ServiceRb;
     private Spinner chooseCarSpinner;
     private Integer companyId;
-    private TextView chooseCarTv;
     private Integer carId;
 
     @Override
@@ -54,7 +53,6 @@ public class CarHistoryActivity extends AppCompatActivity {
 
         DamageRb = findViewById(R.id.DamageRb);
         ServiceRb = findViewById(R.id.ServiceRb);
-        chooseCarTv = findViewById(R.id.chooseCarTv);
         chooseCarSpinner = findViewById(R.id.chooseCarSpinner);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

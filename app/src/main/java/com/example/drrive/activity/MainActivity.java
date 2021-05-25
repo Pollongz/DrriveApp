@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.drrive.R;
+import com.example.drrive.fragment.FillReportFragment;
 import com.example.drrive.fragment.PlannedServicesFragment;
 import com.example.drrive.fragment.RefuelingFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new com.example.drrive.fragment.MainFragment()).commit();
@@ -66,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_car_history:
                 startActivity(new Intent(MainActivity.this, CarHistoryActivity.class));
+                break;
+            case R.id.nav_fill_car_data:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FillReportFragment()).commit();
                 break;
             case R.id.nav_refueling:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -76,13 +76,13 @@
 
         <RadioButton
             android:id="@+id/DamageRb"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="@drawable/damage_rb"
             android:button="@android:color/transparent"
+            android:checked="true"
             android:fontFamily="@font/inter_semi_bold"
             android:gravity="center"
-            android:checked="true"
             android:onClick="onRadioButtonClicked"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
@@ -91,7 +91,7 @@
 
         <RadioButton
             android:id="@+id/ServiceRb"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="@drawable/service_rb"
             android:button="@android:color/transparent"
