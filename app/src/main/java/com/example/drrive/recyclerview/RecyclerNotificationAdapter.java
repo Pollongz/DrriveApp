@@ -20,11 +20,6 @@ public class RecyclerNotificationAdapter extends RecyclerView.Adapter<RecyclerNo
 
     private List<Post> postsList;
     private Context context;
-    private RecyclerViewClickListener listener;
-
-    public RecyclerNotificationAdapter(RecyclerViewClickListener listener) {
-        this.listener = listener;
-    }
 
     public void setData(List<Post> postsList) {
         this.postsList = postsList;
@@ -51,21 +46,11 @@ public class RecyclerNotificationAdapter extends RecyclerView.Adapter<RecyclerNo
         holder.postTitleTv.setText(postTitle);
         holder.postDateTv.setText(postDate);
         holder.postDescriptionTv.setText(postDescription);
-        holder.postTitleTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onClick(post);
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
         return postsList.size();
-    }
-
-    public interface RecyclerViewClickListener {
-        void onClick(Post post);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

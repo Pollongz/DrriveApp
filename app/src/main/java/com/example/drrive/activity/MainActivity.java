@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.drrive.R;
+import com.example.drrive.fragment.AddDamageFragment;
 import com.example.drrive.fragment.FillReportFragment;
 import com.example.drrive.fragment.PlannedServicesFragment;
 import com.example.drrive.fragment.RefuelingFragment;
@@ -49,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new com.example.drrive.fragment.MainFragment()).commit();
@@ -82,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new PlannedServicesFragment()).commit();
                 break;
+            case R.id.nav_damages:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AddDamageFragment()).commit();
+                break;
             case R.id.nav_logout:
 
                 SharedPreferences preferences = getSharedPreferences("logged", MODE_PRIVATE);
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.putBoolean("isLogged", false);
                 editor.putString("token", "");
                 editor.putInt("companyId", 0);
+                editor.putInt("userDataId", 0);
                 editor.apply();
 
                 Toast.makeText(getApplicationContext(), "User logged out successfully", Toast.LENGTH_SHORT).show();
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Click back  again to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kliknij ponownie, aby wyjść", Toast.LENGTH_SHORT).show();
 
             new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
         }

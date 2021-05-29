@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class MainFragment extends Fragment implements RecyclerNotificationAdapter.RecyclerViewClickListener {
+public class MainFragment extends Fragment {
 
     private TextView todaysDateTv;
     private String todaysDate;
@@ -40,6 +40,7 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
     private TextView myCompanyTv;
     private RecyclerView recyclerView;
     private Integer companyId;
+    private Integer userDataId;
     private RecyclerNotificationAdapter recyclerNotificationAdapter;
 
     @Nullable
@@ -60,7 +61,7 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
 
         recyclerView = view.findViewById(R.id.postRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerNotificationAdapter = new RecyclerNotificationAdapter(this::onClick);
+        recyclerNotificationAdapter = new RecyclerNotificationAdapter();
 
         getCurrentUser();
 
@@ -143,6 +144,9 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
                             .getAddress()
                             .getCity();
 
+                    // get users_data ID
+                    userDataId = thisUserData.getIdUserData();
+
                     // get company by employee
                     companyId = thisUserData.getCompany().
                             getIdCompany();
@@ -150,6 +154,7 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
                     SharedPreferences preferences = getActivity().getSharedPreferences("logged", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putInt("companyId", companyId);
+                    editor.putInt("userDataId", userDataId);
                     editor.apply();
 
                     getAllPosts(companyId);
@@ -164,10 +169,5 @@ public class MainFragment extends Fragment implements RecyclerNotificationAdapte
                 myCompanyTv.setText(t.getMessage());
             }
         });
-    }
-
-    @Override
-    public void onClick(Post post) {
-        Toast.makeText(getContext(), "clicked on post " + post.toString(), Toast.LENGTH_SHORT).show();
     }
 }

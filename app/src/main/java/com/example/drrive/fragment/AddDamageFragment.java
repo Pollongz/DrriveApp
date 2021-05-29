@@ -6,19 +6,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +29,10 @@ import com.example.drrive.R;
 import com.example.drrive.api.ApiClient;
 import com.example.drrive.model.Car;
 import com.example.drrive.model.Damage;
-import com.example.drrive.model.Report;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -47,7 +43,7 @@ import retrofit2.Response;
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 
-public class FillReportFragment extends Fragment {
+public class AddDamageFragment extends Fragment {
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
@@ -55,18 +51,16 @@ public class FillReportFragment extends Fragment {
     private Spinner chooseCarSpinner;
     private Integer companyId;
     private Integer userDataId;
-    private TextView DescriptionTv;
+    private TextView policyNumber;
+    private TextView assistanceNumber;
     private EditText mileageEt;
     private EditText addDescriptionEt;
-    private RadioGroup damagedRadioGroup;
     private ImageView newDamagePhoto;
     private Button addPhotoBtn;
     private Button sendReportBtn;
     private Integer carId;
     private ProgressBar progressBar;
 
-    public FillReportFragment() {
-    }
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -76,23 +70,20 @@ public class FillReportFragment extends Fragment {
             @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
             @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
     ) {
-        View view = inflater.inflate(R.layout.fragment_fill_report, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_damage, container, false);
 
         chooseCarSpinner = view.findViewById(R.id.chooseCarSpinner);
+        policyNumber = view.findViewById(R.id.thisPolicyNumberTv);
+        assistanceNumber = view.findViewById(R.id.thisAssistanceNumberTv);
         mileageEt = view.findViewById(R.id.mileageEt);
-        damagedRadioGroup = view.findViewById(R.id.damagedRadioGroup);
-        DescriptionTv = view.findViewById(R.id.DescriptionTv);
         addDescriptionEt = view.findViewById(R.id.addDescriptionEt);
         newDamagePhoto = view.findViewById(R.id.newDamagePhoto);
         addPhotoBtn = view.findViewById(R.id.addPhotoBtn);
         sendReportBtn = view.findViewById(R.id.sendReportBtn);
         progressBar = view.findViewById(R.id.progressBar);
 
-        progressBar.setVisibility(View.GONE);
         newDamagePhoto.setVisibility(View.GONE);
-        addPhotoBtn.setVisibility(View.GONE);
-        DescriptionTv.setVisibility(View.GONE);
-        addDescriptionEt.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
 
         SharedPreferences preferences = getActivity().getSharedPreferences("logged", MODE_PRIVATE);
         companyId = preferences.getInt("companyId", 0);
@@ -100,40 +91,38 @@ public class FillReportFragment extends Fragment {
 
         getAllCars(companyId);
 
-        damagedRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-
-            if (checkedId == R.id.damagedRb) {
-                addPhotoBtn.setVisibility(View.VISIBLE);
-                DescriptionTv.setVisibility(View.VISIBLE);
-                addDescriptionEt.setVisibility(View.VISIBLE);
-
-                sendReportBtn.setOnClickListener(v -> addReportWithDamage());
-            } else {
-                newDamagePhoto.setVisibility(View.GONE);
-                addPhotoBtn.setVisibility(View.GONE);
-                DescriptionTv.setVisibility(View.GONE);
-                addDescriptionEt.setVisibility(View.GONE);
-
-                sendReportBtn.setOnClickListener(v -> addReport());
-            }
-        });
-
         addPhotoBtn.setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (getActivity().checkSelfPermission(Manifest.permission.CAMERA) ==
-                        PackageManager.PERMISSION_DENIED ||
-                        getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                                PackageManager.PERMISSION_DENIED) {
-                    String[] permission = {
-                            Manifest.permission.CAMERA,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    };
-                    requestPermissions(permission, PERMISSION_CODE);
-                } else {
-                    openCamera();
-                }
+            if (getActivity().checkSelfPermission(Manifest.permission.CAMERA) ==
+                    PackageManager.PERMISSION_DENIED ||
+                    getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                            PackageManager.PERMISSION_DENIED) {
+                String[] permission = {
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                };
+                requestPermissions(permission, PERMISSION_CODE);
+            } else {
+                openCamera();
             }
         });
+
+        chooseCarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setInsuranceData();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        assistanceNumber.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", assistanceNumber.getText().toString().trim(), null));
+            startActivity(intent);
+        });
+
+        sendReportBtn.setOnClickListener(v -> addDamage());
 
         return view;
     }
@@ -205,47 +194,23 @@ public class FillReportFragment extends Fragment {
         });
     }
 
-    private void addReport() {
+    private void setInsuranceData() {
+        Car car = (Car) chooseCarSpinner.getSelectedItem();
+        String policyNum = car.getInsurance().getPolicyNumber();
+        String assistanceNum = car.getInsurance().getAssistanceNumber();
+
+        policyNumber.setText(policyNum);
+        assistanceNumber.setText(assistanceNum);
+    }
+
+    private void addDamage() {
         Car car = (Car) chooseCarSpinner.getSelectedItem();
         carId = car.getIdCar();
 
         if (mileageEt.getText().toString().trim().length() == 0) {
             mileageEt.setError("To pole jest wymagane");
             mileageEt.requestFocus();
-        } else {
-            progressBar.setVisibility(View.VISIBLE);
-
-            Report report = new Report();
-            report.setMileage(Integer.parseInt(mileageEt.getText().toString().trim()));
-            report.setDateTime(LocalDateTime.now().toString());
-            report.setIdUsersData(userDataId);
-            report.setIdCar(carId);
-
-            Call<Void> reportResponseCall = ApiClient.getUserService(getActivity()).addNewReport(report);
-            reportResponseCall.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-
-                    if (response.isSuccessful()) {
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new com.example.drrive.fragment.SuccessFragment()).commit();
-                        progressBar.setVisibility(View.GONE);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(getActivity(), "Wystąpił błąd: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    }
-
-    private void addReportWithDamage() {
-        Car car = (Car) chooseCarSpinner.getSelectedItem();
-        carId = car.getIdCar();
-
-        if (addDescriptionEt.getText().toString().trim().length() == 0) {
+        } else if (addDescriptionEt.getText().toString().trim().length() == 0) {
             addDescriptionEt.setError("To pole jest wymagane");
             addDescriptionEt.requestFocus();
         } else {
@@ -265,7 +230,9 @@ public class FillReportFragment extends Fragment {
                 public void onResponse(Call<Void> call, Response<Void> response) {
 
                     if (response.isSuccessful()) {
-                        addReport();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new com.example.drrive.fragment.SuccessFragment()).commit();
+                        progressBar.setVisibility(View.GONE);
                     }
                 }
 

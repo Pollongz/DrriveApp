@@ -10,15 +10,17 @@ public class Damage {
     private String description;
     private String date;
     private Integer carId;
+    private Integer reportedById;
 
     public Damage() {
     }
 
-    public Damage(Integer idDamage, String description, String date, Integer carId) {
+    public Damage(Integer idDamage, String description, String date, Integer carId, Integer reportedById) {
         this.idDamage = idDamage;
         this.description = description;
         this.date = date;
         this.carId = carId;
+        this.reportedById = reportedById;
     }
 
     public Integer getIdDamage() {
@@ -51,5 +53,13 @@ public class Damage {
 
     public void setCarId(Integer carId) {
         this.carId = carId;
+    }
+
+    public Integer getReportedById() {
+        return reportedById;
+    }
+
+    public void setReportedById(Integer reportedById) {
+        this.reportedById = reportedById;
     }
 }

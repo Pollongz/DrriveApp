@@ -26,7 +26,8 @@ public class Car {
     private Integer CompanyId;
     @SerializedName("company")
     private Company company;
-
+    @SerializedName("insurance")
+    private Insurance insurance;
 
     public Car() {
     }
@@ -42,8 +43,8 @@ public class Car {
             String plateNumber,
             Integer isTaken,
             Integer companyId,
-            Company company
-    ) {
+            Company company,
+            Insurance insurance) {
         this.idCar = idCar;
         this.carBrand = carBrand;
         this.carModel = carModel;
@@ -55,6 +56,7 @@ public class Car {
         this.isTaken = isTaken;
         this.CompanyId = companyId;
         this.company = company;
+        this.insurance = insurance;
     }
 
     public Integer getIdCar() {
@@ -143,6 +145,14 @@ public class Car {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
     }
 
     @Override

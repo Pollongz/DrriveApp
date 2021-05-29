@@ -7,6 +7,7 @@ import com.example.drrive.model.Photo;
 import com.example.drrive.model.PlannedServices;
 import com.example.drrive.model.Post;
 import com.example.drrive.model.Refueling;
+import com.example.drrive.model.Report;
 import com.example.drrive.model.Services;
 import com.example.drrive.model.User;
 import com.example.drrive.model.UsersData;
@@ -30,6 +31,12 @@ public interface UserService {
 
     @POST("refueling")
     Call<Void> addNewRefueling(@Body Refueling refueling);
+
+    @POST("reports")
+    Call<Void> addNewReport(@Body Report report);
+
+    @POST("damage")
+    Call<Void> addNewDamage(@Body Damage damage);
 
     @GET("user")
     @Headers("Content-Type: application/json")
@@ -58,4 +65,5 @@ public interface UserService {
 
     @GET("car/{car}/planned")
     Call<List<PlannedServices>> getCarsPlannedServices(@Path("car") Integer carId);
+
 }

@@ -1,6 +1,5 @@
 package com.example.drrive.api;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.example.drrive.service.UserService;
