@@ -7,8 +7,8 @@
 
 <h3>- Retrieving posts from company</h3>
 <h3>- Viewing history of cars from users company</h3>
-- Damages of a car 
-- Performed services
+- Damages of a car <br/>
+- Performed services <br/>
 <h3>- Filling a car reports during worktime with adding photos</h3>
 <h3>- Reporting damages and accidents</h3>
 <h3>- Viewing planned services of cars from users company</h3>
