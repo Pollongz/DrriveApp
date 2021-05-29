@@ -2,16 +2,18 @@
  
  DrriveApp is mobile application for employees to collaborate with managers of their companies. It was created for my Engineer's Thesis. <br/>
  Created Android application consumes created by myself API (https://github.com/Pollongz/DrriveApi)
+ 
+ User's interface is in Polish until my Engineering work defence and after that I will change it to English.
 
 # Features
 
-<h3>- Retrieving posts from company</h3>
-<h3>- Viewing history of cars from users company</h3>
-- Damages of a car <br/>
-- Performed services <br/>
-<h3>- Filling a car reports during worktime with adding photos</h3>
-<h3>- Reporting damages and accidents</h3>
-<h3>- Viewing planned services of cars from users company</h3>
+- <h3>Retrieving posts from company</h3>
+- <h3>Viewing history of cars from users company</h3>
+          - Damages of a car <br/>
+          - Performed services <br/>
+- <h3>Filling a car reports during worktime with adding photos</h3>
+- <h3>Reporting damages and accidents</h3>
+- <h3>Viewing planned services of cars from users company</h3>
 
 # Installation
 
