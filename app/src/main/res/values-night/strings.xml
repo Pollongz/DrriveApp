@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Drrive</string>
+    <string name="on">Włącz</string>
+    <string name="exit">Wyjdź</string>
     <string name="login">Login</string>
     <string name="appname">Drrive</string>
     <string name="log_in_to_start_your_shift">Log in to start your shift!</string>

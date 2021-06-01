@@ -7,11 +7,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.drrive.R;
@@ -19,6 +25,7 @@ import com.example.drrive.fragment.AddDamageFragment;
 import com.example.drrive.fragment.FillReportFragment;
 import com.example.drrive.fragment.PlannedServicesFragment;
 import com.example.drrive.fragment.RefuelingFragment;
+import com.example.drrive.service.InternetCheck;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,6 +39,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        InternetCheck internetCheck = new InternetCheck(MainActivity.this);
+        boolean connection = internetCheck.isNetworkAvailable(getApplicationContext());
+
+        if (!connection) {
+            internetCheck.connectionDialog(MainActivity.this);
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

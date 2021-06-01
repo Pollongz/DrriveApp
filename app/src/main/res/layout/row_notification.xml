@@ -22,6 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#3392BBFA"
             android:paddingLeft="6dp"
             android:paddingRight="6dp">
 
@@ -32,9 +33,9 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/inter_semi_bold"
                 android:gravity="center"
-                android:maxLength="20"
+                android:maxLength="25"
                 android:text="Example title"
-                android:textColor="#930000"
+                android:textColor="@color/blue"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,8 +53,8 @@
                 android:fontFamily="@font/inter_regular"
                 android:gravity="center"
                 android:inputType="textMultiLine"
-                android:maxLength="200"
                 android:text="Post example content"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

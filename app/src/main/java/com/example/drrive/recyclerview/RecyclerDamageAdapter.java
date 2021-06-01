@@ -40,12 +40,13 @@ public class RecyclerDamageAdapter extends RecyclerView.Adapter<RecyclerDamageAd
 
         String damageDescription = damage.getDescription();
         String damageDate = damage.getDate();
-
-        //TODO display photos of a damage
+        String reportedBy = "Zgłoszono przez: " + damage.getUsersData().getFirstName() + " " +
+                damage.getUsersData().getLastName();
 
         holder.damageDescriptionTv.setText(damageDescription);
         holder.damageDateTv.setText(damageDate);
-        holder.damagePhoto.setImageResource(R.drawable.ic_car);
+        holder.reportedByTv.setText(reportedBy);
+        holder.damagePhoto.setImageResource(R.drawable.photo1);
     }
 
     @Override
@@ -57,12 +58,14 @@ public class RecyclerDamageAdapter extends RecyclerView.Adapter<RecyclerDamageAd
 
         private final TextView damageDescriptionTv;
         private final TextView damageDateTv;
+        private final TextView reportedByTv;
         private final ImageView damagePhoto;
 
         public MyViewHolder(@NonNull @NotNull View view) {
             super(view);
             damageDescriptionTv = view.findViewById(R.id.damageDescriptionTv);
             damageDateTv = view.findViewById(R.id.damageDateTv);
+            reportedByTv = view.findViewById(R.id.reportedByTv);
             damagePhoto = view.findViewById(R.id.damagePhoto);
         }
     }

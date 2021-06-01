@@ -1,17 +1,27 @@
  package com.example.drrive.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.drrive.R;
@@ -37,7 +47,7 @@ import retrofit2.Response;
         setContentView(R.layout.activity_login);
 
         usernameLog = findViewById(R.id.usernameLog);
-        passwordLog =  findViewById(R.id.passwordLog);
+        passwordLog = findViewById(R.id.passwordLog);
         loginBtn = findViewById(R.id.loginBtn);
         loginProgressBar = findViewById(R.id.loginProgressBar);
         loginProgressBar.setVisibility(View.GONE);
@@ -51,7 +61,6 @@ import retrofit2.Response;
         } else {
             Toast.makeText(getApplicationContext(), "Log in to continue", Toast.LENGTH_SHORT).show();
         }
-
         loginBtn.setOnClickListener(this);
     }
 
@@ -67,7 +76,6 @@ import retrofit2.Response;
                 loginProgressBar.setVisibility(View.VISIBLE);
                 login();
             }
-
         }
     }
 
