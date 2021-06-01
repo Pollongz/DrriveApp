@@ -1,7 +1,7 @@
 # DrriveApp(still in development)
 
  DrriveApp is mobile application for employees to collaborate with managers of their companies. It was created for my Engineer's Thesis. <br/>
- Created Android application consumes created by myself API (https://github.com/Pollongz/DrriveApi)
+ Created with use of Retrofit, android application consumes created by myself API (https://github.com/Pollongz/DrriveApi).
 
  Users interface is in Polish until my Engineering work defence and after that I will change it to English.
 
