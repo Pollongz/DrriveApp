@@ -46,7 +46,7 @@ public class RecyclerDamageAdapter extends RecyclerView.Adapter<RecyclerDamageAd
         holder.damageDescriptionTv.setText(damageDescription);
         holder.damageDateTv.setText(damageDate);
         holder.reportedByTv.setText(reportedBy);
-        holder.damagePhoto.setImageResource(R.drawable.photo1);
+        holder.damagePhoto.setImageResource(R.drawable.photo3);
     }
 
     @Override

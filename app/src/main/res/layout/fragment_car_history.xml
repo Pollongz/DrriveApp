@@ -13,8 +13,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="Wybierz auto:"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="Wybierz auto z listy"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

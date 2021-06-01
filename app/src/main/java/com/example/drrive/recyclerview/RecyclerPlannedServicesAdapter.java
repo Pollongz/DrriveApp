@@ -43,8 +43,13 @@ public class RecyclerPlannedServicesAdapter extends RecyclerView.Adapter<Recycle
         String serviceDescription = plannedService.getDescription();
         String serviceDate = plannedService.getDate();
 
+        String date = serviceDate.substring(0, 10);
+        String hour = serviceDate.substring(11);
+
+        String fullDate = date + " \n" + hour;
+
         holder.plannedDescriptionTv.setText(serviceDescription);
-        holder.plannedDateTv.setText(serviceDate);
+        holder.plannedDateTv.setText(fullDate);
     }
 
     @Override

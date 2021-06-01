@@ -17,8 +17,6 @@
         android:theme="@style/Theme.Drrive"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activity.AddCarInfoActivity" />
-        <activity android:name=".activity.CarHistoryActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:noHistory="true">
@@ -29,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.CarHistoryActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
