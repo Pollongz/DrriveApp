@@ -38,7 +38,7 @@ public class ApiClient {
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.60:8080/")
+                .baseUrl("https://drrive.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();

@@ -4,6 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#007EDE</color>
     <color name="black">#000000</color>
-    <color name="border">#000000</color>
+    <color name="border">#FFFFF</color>
 
 </resources>
