@@ -1,14 +1,10 @@
 package com.example.drrive.model;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Services {
 
-    @SerializedName("id_services")
     private Integer idServices;
     private String description;
-    @SerializedName("service_cost")
-    private Float ServiceCost;
+    private Float serviceCost;
     private Integer mileage;
     private String date;
     private Integer carId;
@@ -19,7 +15,7 @@ public class Services {
     public Services(Integer idServices, String description, Float serviceCost, Integer mileage, String date, Integer carId) {
         this.idServices = idServices;
         this.description = description;
-        ServiceCost = serviceCost;
+        this.serviceCost = serviceCost;
         this.mileage = mileage;
         this.date = date;
         this.carId = carId;
@@ -42,11 +38,11 @@ public class Services {
     }
 
     public Float getServiceCost() {
-        return ServiceCost;
+        return serviceCost;
     }
 
     public void setServiceCost(Float serviceCost) {
-        ServiceCost = serviceCost;
+        this.serviceCost = serviceCost;
     }
 
     public Integer getMileage() {

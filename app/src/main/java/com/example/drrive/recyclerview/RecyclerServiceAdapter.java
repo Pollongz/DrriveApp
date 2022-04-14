@@ -1,5 +1,6 @@
 package com.example.drrive.recyclerview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class RecyclerServiceAdapter extends RecyclerView.Adapter<RecyclerService
     private List<Services> servicesList;
     private Context context;
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setData(List<Services> servicesList) {
         this.servicesList = servicesList;
         notifyDataSetChanged();
@@ -40,7 +42,9 @@ public class RecyclerServiceAdapter extends RecyclerView.Adapter<RecyclerService
         Services service = servicesList.get(position);
 
         String serviceDescription = service.getDescription();
-        String serviceDate = service.getDate();
+        String date = service.getDate();
+
+        String serviceDate = date.substring(0,10);
 
         holder.serviceDescriptionTv.setText(serviceDescription);
         holder.serviceDateTv.setText(serviceDate);
@@ -51,7 +55,7 @@ public class RecyclerServiceAdapter extends RecyclerView.Adapter<RecyclerService
         return servicesList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView serviceDescriptionTv;
         private final TextView serviceDateTv;

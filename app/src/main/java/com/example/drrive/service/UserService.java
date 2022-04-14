@@ -17,6 +17,7 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -37,6 +38,9 @@ public interface UserService {
 
     @POST("damage")
     Call<Void> addNewDamage(@Body Damage damage);
+
+    @POST("service")
+    Call<Void> addNewServices(@Body Services services);
 
     @GET("user")
     @Headers("Content-Type: application/json")
@@ -65,5 +69,8 @@ public interface UserService {
 
     @GET("car/{car}/planned")
     Call<List<PlannedServices>> getCarsPlannedServices(@Path("car") Integer carId);
+
+    @DELETE("planned/{id}")
+    Call<Void> deletePlannedServices(@Path("id") int plannedId);
 
 }
