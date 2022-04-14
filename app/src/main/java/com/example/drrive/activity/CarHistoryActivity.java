@@ -1,37 +1,26 @@
 package com.example.drrive.activity;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.drrive.R;
 import com.example.drrive.api.ApiClient;
 import com.example.drrive.fragment.DamageFragment;
 import com.example.drrive.fragment.ServiceFragment;
 import com.example.drrive.model.Car;
-import com.example.drrive.model.Damage;
-import com.example.drrive.model.Post;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;

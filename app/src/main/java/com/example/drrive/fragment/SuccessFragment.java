@@ -16,12 +16,12 @@ import org.jetbrains.annotations.NotNull;
 public class SuccessFragment extends Fragment {
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
+
     @Override
     public View onCreateView(
             @NonNull @NotNull LayoutInflater inflater,
-            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
-            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
     ) {
         return inflater.inflate(R.layout.fragment_success, container, false);
     }

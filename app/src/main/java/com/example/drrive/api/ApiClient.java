@@ -2,6 +2,7 @@ package com.example.drrive.api;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import com.example.drrive.service.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,28 +28,24 @@ public class ApiClient {
                 .setDateFormat("yyyy-MM-dd")
                 .create();
 
-        OkHttpClient client =  new OkHttpClient.Builder()
+        OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(chain -> {
-                    Request newRequest  = chain.request().newBuilder()
+                    Request newRequest = chain.request().newBuilder()
                             .addHeader("Authorization", token)
                             .build();
                     return chain.proceed(newRequest);
                 })
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl("https://drrive.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
-
-        return retrofit;
     }
 
     public static UserService getUserService(Context context) {
-        UserService userService = getRetrofit(context).create(UserService.class);
-
-        return userService;
+        return getRetrofit(context).create(UserService.class);
     }
 }

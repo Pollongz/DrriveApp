@@ -1,5 +1,8 @@
 package com.example.drrive.fragment;
 
+import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
+
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -35,13 +38,11 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 
 public class AddDamageFragment extends Fragment {
 
@@ -63,12 +64,11 @@ public class AddDamageFragment extends Fragment {
 
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(
             @NonNull @NotNull LayoutInflater inflater,
-            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
-            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_add_damage, container, false);
 
@@ -85,16 +85,16 @@ public class AddDamageFragment extends Fragment {
         newDamagePhoto.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
 
-        SharedPreferences preferences = getActivity().getSharedPreferences("logged", MODE_PRIVATE);
+        SharedPreferences preferences = requireActivity().getSharedPreferences("logged", MODE_PRIVATE);
         companyId = preferences.getInt("companyId", 0);
         userDataId = preferences.getInt("userDataId", 0);
 
         getAllCars(companyId);
 
         addPhotoBtn.setOnClickListener(v -> {
-            if (getActivity().checkSelfPermission(Manifest.permission.CAMERA) ==
+            if (requireActivity().checkSelfPermission(Manifest.permission.CAMERA) ==
                     PackageManager.PERMISSION_DENIED ||
-                    getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                    requireActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                             PackageManager.PERMISSION_DENIED) {
                 String[] permission = {
                         Manifest.permission.CAMERA,
@@ -131,7 +131,7 @@ public class AddDamageFragment extends Fragment {
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "New picture");
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the camera");
-        image_uri = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        image_uri = requireContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
@@ -151,7 +151,7 @@ public class AddDamageFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK) {
             newDamagePhoto.setImageURI(image_uri);
             newDamagePhoto.setVisibility(View.VISIBLE);
@@ -189,7 +189,7 @@ public class AddDamageFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Car>> call, Throwable t) {
-                // TODO something went wrong
+                Toast.makeText(getActivity(), "Wystąpił błąd: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -226,11 +226,12 @@ public class AddDamageFragment extends Fragment {
 
             Call<Void> damageResponseCall = ApiClient.getUserService(getActivity()).addNewDamage(damage);
             damageResponseCall.enqueue(new Callback<Void>() {
+
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
 
                     if (response.isSuccessful()) {
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 new com.example.drrive.fragment.SuccessFragment()).commit();
                         progressBar.setVisibility(View.GONE);
                     }

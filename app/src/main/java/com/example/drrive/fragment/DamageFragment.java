@@ -37,12 +37,12 @@ public class DamageFragment extends Fragment {
     }
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
+
     @Override
     public View onCreateView(
             @NonNull @NotNull LayoutInflater inflater,
-            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
-            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_car_history_damages, container, false);
 

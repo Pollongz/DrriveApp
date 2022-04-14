@@ -69,12 +69,11 @@ public class FillReportFragment extends Fragment {
     }
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(
             @NonNull @NotNull LayoutInflater inflater,
-            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
-            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_fill_report, container, false);
 
@@ -162,7 +161,7 @@ public class FillReportFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK) {
             newDamagePhoto.setImageURI(image_uri);
             newDamagePhoto.setVisibility(View.VISIBLE);

@@ -25,6 +25,7 @@ import com.example.drrive.recyclerview.RecyclerPlannedServicesAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,12 +45,12 @@ public class PlannedServicesFragment extends Fragment {
     }
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
+
     @Override
     public View onCreateView(
             @NonNull @NotNull LayoutInflater inflater,
-            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
-            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
     ) {
         View view = inflater.inflate(R.layout.fragment_planned_services, container, false);
 
@@ -59,7 +60,7 @@ public class PlannedServicesFragment extends Fragment {
 
         recyclerPlannedServicesAdapter = new RecyclerPlannedServicesAdapter();
 
-        SharedPreferences preferences = getActivity().getSharedPreferences("logged", MODE_PRIVATE);
+        SharedPreferences preferences = requireActivity().getSharedPreferences("logged", MODE_PRIVATE);
         companyId = preferences.getInt("companyId", 0);
 
         getAllCars(companyId);

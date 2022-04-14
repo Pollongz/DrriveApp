@@ -20,7 +20,7 @@
             android:background="@color/white"
             android:id="@+id/toolbar"
             app:theme="@style/ToolbarColoredBackArrow"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
             android:elevation="4dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
