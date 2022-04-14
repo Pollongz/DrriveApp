@@ -99,7 +99,15 @@ public class MarkServiceAsDoneFragment extends Fragment {
         String date = LocalDate.now().toString();
         String serviceDate = date.replace("-",".");
 
-        services.setDate(serviceDate);
+        // 2022.04.14
+
+        String year = serviceDate.substring(0,4);
+        String month = serviceDate.substring(5,7);
+        String day = serviceDate.substring(8);
+
+        String sendData = day + "." + month + "." + year;
+
+        services.setDate(sendData);
 
         return services;
     }
